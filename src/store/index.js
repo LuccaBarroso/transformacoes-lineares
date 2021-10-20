@@ -61,9 +61,29 @@ export default new Vuex.Store({
       state.p1.y = newPos[1];
       state.p1.z = newPos[2];
     },
-    // rotate3D: (state, { x, y, z }) => {
-
-    // },
+    rotate3D: (state, { x, y, z }) => {
+      let rotationVector = [
+        [1, 0, 0],
+        [0, Math.cos(x * (Math.PI / 180)), -Math.sin(x * (Math.PI / 180))],
+        [0, Math.sin(x * (Math.PI / 180)), Math.cos(x * (Math.PI / 180))],
+      ];
+      let newPos = mul(rotationVector, [state.p1.x, state.p1.y, state.p1.z]);
+      rotationVector = [
+        [Math.cos(y * (Math.PI / 180)), 0, Math.sin(y * (Math.PI / 180))],
+        [0, 1, 0],
+        [-Math.sin(y * (Math.PI / 180)), 0, Math.cos(y * (Math.PI / 180))],
+      ];
+      newPos = mul(rotationVector, newPos);
+      rotationVector = [
+        [Math.cos(z * (Math.PI / 180)), -Math.sin(z * (Math.PI / 180), 0)],
+        [Math.sin(z * (Math.PI / 180)), Math.cos(z * (Math.PI / 180)), 0],
+        [0, 0, 1],
+      ];
+      newPos = mul(rotationVector, newPos);
+      state.p1.x = newPos[0];
+      state.p1.y = newPos[1];
+      state.p1.z = newPos[2];
+    },
   },
   actions: {},
   modules: {},
