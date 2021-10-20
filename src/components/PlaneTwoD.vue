@@ -32,18 +32,8 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  props: {
-    x2: Number,
-    y2: Number,
-  },
   computed: {
     ...mapGetters(["getPositions"]),
-    calcX2() {
-      return this.x2 / 2 + 173.5;
-    },
-    calcY2() {
-      return 51 - this.y2 / 2;
-    },
   },
 };
 </script>

@@ -36,6 +36,9 @@ export default {
         y: Number(this.y),
         z: Number(this.z),
       });
+      this.x = 0;
+      this.y = 0;
+      this.z = 0;
     },
   },
   props: {

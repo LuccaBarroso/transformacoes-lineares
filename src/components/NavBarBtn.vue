@@ -22,8 +22,8 @@ export default {
   height: 100%;
   background-color: #6e8894;
   text-decoration: none;
-  color: black;
-  padding: 19px;
+  color: white;
+  padding: 18.3px;
   font-weight: 600;
 }
 .router-link-active {

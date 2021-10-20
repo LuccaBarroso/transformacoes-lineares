@@ -1,6 +1,6 @@
 <template>
   <div class="parent">
-    <div class="displayPossition">
+    <div class="displayPossition" :class="{ threeD: !twoD }">
       <div class="inputNumber">
         <label for="input">X0=</label>
         <input type="number" v-model="getPositionX0" />
@@ -8,6 +8,10 @@
       <div class="inputNumber">
         <label for="input">Y0=</label>
         <input type="number" v-model="getPositionY0" />
+      </div>
+      <div v-if="!twoD" class="inputNumber">
+        <label for="input">Z0=</label>
+        <input type="number" v-model="getPositionZ0" />
       </div>
       <div class="inputNumber">
         <label for="input">X1=</label>
@@ -17,6 +21,10 @@
         <label for="input">Y1=</label>
         <input type="number" v-model="getPositionY1" />
       </div>
+      <div v-if="!twoD" class="inputNumber">
+        <label for="input">Z1=</label>
+        <input type="number" v-model="getPositionZ1" />
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +32,12 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 export default {
+  props: {
+    twoD: {
+      type: Boolean,
+      default: true,
+    },
+  },
   computed: {
     ...mapGetters(["getPositions"]),
     getPositionX0: {
@@ -44,6 +58,15 @@ export default {
         this.setPositions({ index: "y0", value });
       },
     },
+    getPositionZ0: {
+      get() {
+        return this.getPositions("z0");
+      },
+      set(value) {
+        //{ index: "x0", value: Number(value) }
+        this.setPositions({ index: "z0", value });
+      },
+    },
     getPositionX1: {
       get() {
         return this.getPositions("x1");
@@ -60,6 +83,15 @@ export default {
       set(value) {
         //{ index: "x0", value: Number(value) }
         this.setPositions({ index: "y1", value });
+      },
+    },
+    getPositionZ1: {
+      get() {
+        return this.getPositions("z1");
+      },
+      set(value) {
+        //{ index: "x0", value: Number(value) }
+        this.setPositions({ index: "z1", value });
       },
     },
   },
@@ -93,6 +125,9 @@ export default {
         padding-left: 10px;
       }
     }
+  }
+  .threeD {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 </style>
