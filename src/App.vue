@@ -13,3 +13,8 @@ export default {
   components: { TopNavBar },
 };
 </script>
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>

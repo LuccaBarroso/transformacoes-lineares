@@ -30,7 +30,7 @@ export default {
   align-items: center;
   .logo {
     color: white;
-    font-family: "Birthstone Bounce", cursive;
+    font-family: "Birthstone Bounce", cursive !important;
     font-weight: 400;
     font-size: 15px;
     margin: 5px;

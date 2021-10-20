@@ -23,8 +23,8 @@ export default {
   background-color: #6e8894;
   text-decoration: none;
   color: black;
-  font-family: "compact";
   padding: 19px;
+  font-weight: 600;
 }
 .router-link-active {
   color: black;

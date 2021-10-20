@@ -42,6 +42,14 @@ export default new Vuex.Store({
         if (index[0] === "z") state.p1.z = newValue;
       }
     },
+    translate: (state, { x, y, z = 0 }) => {
+      state.p0.x += x;
+      state.p0.y += y;
+      state.p0.z += z;
+      state.p1.x += x;
+      state.p1.y += y;
+      state.p1.z += z;
+    },
   },
   actions: {},
   modules: {},
