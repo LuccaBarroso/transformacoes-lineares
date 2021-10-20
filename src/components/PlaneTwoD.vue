@@ -15,10 +15,12 @@
         </marker>
       </defs>
       <line
-        x1="173.5"
-        y1="51"
-        :x2="calcX2"
-        :y2="calcY2"
+        :x1="getPositions('x0') / 2 + 173.5"
+        :y1="51 - getPositions('y0') / 2"
+        z1="200"
+        :x2="getPositions('x1') / 2 + 173.5"
+        :y2="51 - getPositions('y1') / 2"
+        z2="200"
         stroke="#000"
         stroke-width="0.3"
         marker-end="url(#arrowhead)"
@@ -28,18 +30,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     x2: Number,
     y2: Number,
   },
   computed: {
+    ...mapGetters(["getPositions"]),
     calcX2() {
-      // console.log(this.x2 + 171);
       return this.x2 / 2 + 173.5;
     },
     calcY2() {
-      console.log(-Math.abs(this.y2 + 51));
       return 51 - this.y2 / 2;
     },
   },
