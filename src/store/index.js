@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import mul from "../usefullFunctions/MatrixTimesVector.js";
 
 Vue.use(Vuex);
 
@@ -50,6 +51,19 @@ export default new Vuex.Store({
       state.p1.y += y;
       state.p1.z += z;
     },
+    rotate2D: (state, x) => {
+      const rotationVector = [
+        [Math.cos(x * (Math.PI / 180)), -Math.sin(x * (Math.PI / 180))],
+        [Math.sin(x * (Math.PI / 180)), Math.cos(x * (Math.PI / 180))],
+      ];
+      const newPos = mul(rotationVector, [state.p1.x, state.p1.y]);
+      state.p1.x = newPos[0];
+      state.p1.y = newPos[1];
+      state.p1.z = newPos[2];
+    },
+    // rotate3D: (state, { x, y, z }) => {
+
+    // },
   },
   actions: {},
   modules: {},

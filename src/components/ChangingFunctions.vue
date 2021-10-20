@@ -32,13 +32,15 @@
     </div>
     <!-- Actual components -->
     <translacao v-if="translacao" :twoD="twoD" />
+    <rotacao v-if="rotacao" :twoD="twoD" />
   </div>
 </template>
 
 <script>
 import translacao from "../components/Translacao.vue";
+import Rotacao from "./Rotacao.vue";
 export default {
-  components: { translacao },
+  components: { translacao, Rotacao },
   data() {
     return {
       translacao: true,
