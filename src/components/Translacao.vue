@@ -28,7 +28,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["translate"]),
+    ...mapMutations(["translate", "UPDATE_VECTOR"]),
     translacionar() {
       window.scrollTo(0, 0);
       this.translate({
@@ -39,6 +39,7 @@ export default {
       this.x = 0;
       this.y = 0;
       this.z = 0;
+      this.UPDATE_VECTOR();
     },
   },
   props: {

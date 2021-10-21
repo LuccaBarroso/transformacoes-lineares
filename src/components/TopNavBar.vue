@@ -28,11 +28,11 @@ export default {
   background-color: #544e61;
   padding: 0 15px 0 10px;
   align-items: center;
+  height: 40px;
   .logo {
     color: white;
-    font-family: "Birthstone Bounce", cursive !important;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 8px;
     margin: 5px;
   }
 }

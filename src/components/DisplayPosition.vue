@@ -45,8 +45,8 @@ export default {
         return this.getPositions("x0");
       },
       set(value) {
-        //{ index: "x0", value: Number(value) }
         this.setPositions({ index: "x0", value });
+        this.UPDATE_VECTOR();
       },
     },
     getPositionY0: {
@@ -54,8 +54,8 @@ export default {
         return this.getPositions("y0");
       },
       set(value) {
-        //{ index: "x0", value: Number(value) }
         this.setPositions({ index: "y0", value });
+        this.UPDATE_VECTOR();
       },
     },
     getPositionZ0: {
@@ -63,8 +63,8 @@ export default {
         return this.getPositions("z0");
       },
       set(value) {
-        //{ index: "x0", value: Number(value) }
         this.setPositions({ index: "z0", value });
+        this.UPDATE_VECTOR();
       },
     },
     getPositionX1: {
@@ -72,8 +72,8 @@ export default {
         return this.getPositions("x1");
       },
       set(value) {
-        //{ index: "x0", value: Number(value) }
         this.setPositions({ index: "x1", value });
+        this.UPDATE_VECTOR();
       },
     },
     getPositionY1: {
@@ -81,8 +81,8 @@ export default {
         return this.getPositions("y1");
       },
       set(value) {
-        //{ index: "x0", value: Number(value) }
         this.setPositions({ index: "y1", value });
+        this.UPDATE_VECTOR();
       },
     },
     getPositionZ1: {
@@ -90,13 +90,13 @@ export default {
         return this.getPositions("z1");
       },
       set(value) {
-        //{ index: "x0", value: Number(value) }
         this.setPositions({ index: "z1", value });
+        this.UPDATE_VECTOR();
       },
     },
   },
   methods: {
-    ...mapMutations(["setPositions"]),
+    ...mapMutations(["setPositions", "UPDATE_VECTOR"]),
   },
 };
 </script>
@@ -105,7 +105,7 @@ export default {
 .parent {
   display: flex;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 60px;
   .displayPossition {
     align-items: center;
     width: 50%;
@@ -128,6 +128,11 @@ export default {
   }
   .threeD {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .displayPossition {
+    width: 90% !important;
   }
 }
 </style>

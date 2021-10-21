@@ -28,7 +28,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["rotate2D", "rotate3D"]),
+    ...mapMutations(["rotate2D", "rotate3D", "UPDATE_VECTOR"]),
     translacionar() {
       window.scrollTo(0, 0);
       if (this.twoD == true) this.rotate2D(Number(this.x));
@@ -41,6 +41,7 @@ export default {
       this.x = 0;
       this.y = 0;
       this.z = 0;
+      this.UPDATE_VECTOR();
     },
   },
   props: {
