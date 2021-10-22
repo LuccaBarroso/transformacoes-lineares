@@ -236,27 +236,71 @@ export default new Vuex.Store({
       state.p1.z = newPos[2];
     },
     rotate3D: (state, { x, y, z }) => {
-      let rotationVector = [
+      let rotationMatriz = [
         [1, 0, 0],
         [0, Math.cos(x * (Math.PI / 180)), -Math.sin(x * (Math.PI / 180))],
         [0, Math.sin(x * (Math.PI / 180)), Math.cos(x * (Math.PI / 180))],
       ];
-      let newPos = mul(rotationVector, [state.p1.x, state.p1.y, state.p1.z]);
-      rotationVector = [
+      let newPos = mul(rotationMatriz, [state.p1.x, state.p1.y, state.p1.z]);
+      rotationMatriz = [
         [Math.cos(y * (Math.PI / 180)), 0, Math.sin(y * (Math.PI / 180))],
         [0, 1, 0],
         [-Math.sin(y * (Math.PI / 180)), 0, Math.cos(y * (Math.PI / 180))],
       ];
-      newPos = mul(rotationVector, newPos);
-      rotationVector = [
+      newPos = mul(rotationMatriz, newPos);
+      rotationMatriz = [
         [Math.cos(z * (Math.PI / 180)), -Math.sin(z * (Math.PI / 180), 0)],
         [Math.sin(z * (Math.PI / 180)), Math.cos(z * (Math.PI / 180)), 0],
         [0, 0, 1],
       ];
-      newPos = mul(rotationVector, newPos);
+      newPos = mul(rotationMatriz, newPos);
       state.p1.x = newPos[0];
       state.p1.y = newPos[1];
       state.p1.z = newPos[2];
+    },
+    reflect(state, eixo) {
+      let reflectMatriz;
+      if (state.p0.z == 0 && state.p1.z == 0) {
+        if (eixo === "x") {
+          reflectMatriz = [
+            [1, 0],
+            [0, -1],
+          ];
+        } else if (eixo === "y") {
+          reflectMatriz = [
+            [-1, 0],
+            [0, 1],
+          ];
+        }
+      } else {
+        if (eixo === "x") {
+          reflectMatriz = [
+            [1, 0, 0],
+            [0, 1, 0],
+            [0, 0, -1],
+          ];
+        } else if (eixo === "y") {
+          reflectMatriz = [
+            [-1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1],
+          ];
+        } else if (eixo === "z") {
+          reflectMatriz = [
+            [1, 0, 0],
+            [0, -1, 0],
+            [0, 0, 1],
+          ];
+        }
+      }
+      let newPos = mul(reflectMatriz, [state.p1.x, state.p1.y, state.p1.z]);
+      state.p1.x = newPos[0];
+      state.p1.y = newPos[1];
+      state.p1.z = newPos[2];
+      newPos = mul(reflectMatriz, [state.p0.x, state.p0.y, state.p0.z]);
+      state.p0.x = newPos[0];
+      state.p0.y = newPos[1];
+      state.p0.z = newPos[2];
     },
   },
   actions: {
