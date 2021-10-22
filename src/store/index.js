@@ -17,6 +17,8 @@ import {
   Geometry,
   Vector3,
   Line,
+  Points,
+  PointsMaterial,
 } from "three-full";
 
 Vue.use(Vuex);
@@ -81,7 +83,7 @@ export default new Vuex.Store({
         // 4. Far clipping plane
         1000
       );
-      state.camera.position.z = 500;
+      state.camera.position.z = 100;
     },
     INITIALIZE_CONTROLS(state) {
       state.controls = new TrackballControls(
@@ -151,20 +153,47 @@ export default new Vuex.Store({
       var geometryE = new Geometry();
       geometryE.vertices.push(new Vector3(state.p0.x, state.p0.y, state.p0.z));
       geometryE.vertices.push(new Vector3(state.p1.x, state.p1.y, state.p1.z));
-      var lineD = new Line(geometryE, materialE);
-      state.vector.push(lineD);
+      var arrow = new Line(geometryE, materialE);
+      state.vector.push(arrow);
+
+      var pointMaterial = new PointsMaterial({
+        size: 3,
+        sizeAttenuation: false,
+        color: 0x000000,
+      });
+      var pointGeometry = new Geometry();
+      pointGeometry.vertices.push(
+        new Vector3(state.p1.x, state.p1.y, state.p1.z)
+      );
+      var point = new Points(pointGeometry, pointMaterial);
+      state.vector.push(point);
       state.scene.add(...state.vector);
     },
     UPDATE_VECTOR(state) {
       state.scene.remove(...state.vector);
       state.vector = [];
+
       var materialE = new LineBasicMaterial({ color: 0x000000 });
       var geometryE = new Geometry();
       geometryE.vertices.push(new Vector3(state.p0.x, state.p0.y, state.p0.z));
       geometryE.vertices.push(new Vector3(state.p1.x, state.p1.y, state.p1.z));
-      var lineD = new Line(geometryE, materialE);
-      state.vector.push(lineD);
+      var arrow = new Line(geometryE, materialE);
+      state.vector.push(arrow);
+
+      var pointMaterial = new PointsMaterial({
+        size: 3,
+        sizeAttenuation: false,
+        color: 0x000000,
+      });
+      var pointGeometry = new Geometry();
+      pointGeometry.vertices.push(
+        new Vector3(state.p1.x, state.p1.y, state.p1.z)
+      );
+      var point = new Points(pointGeometry, pointMaterial);
+      state.vector.push(point);
+
       state.scene.add(...state.vector);
+
       state.renderer.render(state.scene, state.camera);
     },
     RESIZE(state, { width, height }) {
