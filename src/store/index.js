@@ -302,6 +302,37 @@ export default new Vuex.Store({
       state.p0.y = newPos[1];
       state.p0.z = newPos[2];
     },
+    project(state, eixo) {
+      let projectMatriz;
+      if (eixo === "x") {
+        projectMatriz = [
+          [1, 0, 0],
+          [0, 0, 0],
+          [0, 0, 0],
+        ];
+      } else if (eixo === "y") {
+        projectMatriz = [
+          [0, 0, 0],
+          [0, 1, 0],
+          [0, 0, 0],
+        ];
+      } else if (eixo === "z") {
+        projectMatriz = [
+          [0, 0, 0],
+          [0, 0, 0],
+          [0, 0, 1],
+        ];
+      }
+
+      let newPos = mul(projectMatriz, [state.p1.x, state.p1.y, state.p1.z]);
+      state.p1.x = newPos[0];
+      state.p1.y = newPos[1];
+      state.p1.z = newPos[2];
+      newPos = mul(projectMatriz, [state.p0.x, state.p0.y, state.p0.z]);
+      state.p0.x = newPos[0];
+      state.p0.y = newPos[1];
+      state.p0.z = newPos[2];
+    },
   },
   actions: {
     INIT({ state, commit }, { width, height, el }) {
