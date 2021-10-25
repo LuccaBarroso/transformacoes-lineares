@@ -141,7 +141,7 @@ export default new Vuex.Store({
       var lineB = new Line(geometryC, materialC);
       state.axisLines.push(lineB);
       // Axis 3
-      var materialD = new LineBasicMaterial({ color: 0xff0000, linewidth: 20 });
+      var materialD = new LineBasicMaterial({ color: 0xff0000 });
       var geometryD = new Geometry();
       geometryD.vertices.push(new Vector3(0, 0, 0));
       geometryD.vertices.push(new Vector3(0, 0, 1000));
@@ -149,7 +149,7 @@ export default new Vuex.Store({
       state.axisLines.push(lineC);
       state.scene.add(...state.axisLines);
       // Axis 4 SELF MADE
-      var materialE = new LineBasicMaterial({ color: 0x000000 });
+      var materialE = new LineBasicMaterial({ color: 0x000000, linewidth: 2 });
       var geometryE = new Geometry();
       geometryE.vertices.push(new Vector3(state.p0.x, state.p0.y, state.p0.z));
       geometryE.vertices.push(new Vector3(state.p1.x, state.p1.y, state.p1.z));
