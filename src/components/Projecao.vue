@@ -1,10 +1,12 @@
 <template>
-  <div class="action">
-    <h2>Reflexão</h2>
-    <button @click="projetar('x')">Project X</button>
-    <button @click="projetar('y')">Project Y</button>
-    <button v-show="!twoD" @click="projetar('z')">Project Z</button>
-  </div>
+  <transition name="show" appear>
+    <div class="action">
+      <h2>Projeção</h2>
+      <button @click="projetar('x')">Projetar X</button>
+      <button @click="projetar('y')">Projetar Y</button>
+      <button v-show="!twoD" @click="projetar('z')">Projetar Z</button>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -34,6 +36,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 45vw;
   button {
     padding: 5px;
     margin: 5px;
@@ -50,6 +54,38 @@ export default {
       padding-left: 10px;
       color: white;
     }
+  }
+}
+@media (max-width: 600px) {
+  .inputNumber {
+    input {
+      width: 60%;
+    }
+  }
+  .action {
+    left: 20vw;
+  }
+}
+.show-enter-active {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation: bounce-in 0.5s 0.5s ease-in-out;
+}
+.show-leave-active {
+  animation-fill-mode: forwards;
+  animation: bounce-in 0.5s ease-in-out reverse;
+}
+@keyframes bounce-in {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 </style>

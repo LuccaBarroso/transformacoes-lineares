@@ -33,7 +33,7 @@ export default new Vuex.Store({
     p1: {
       x: 10,
       y: 10,
-      z: 10,
+      z: 0,
     },
     width: 0,
     height: 0,

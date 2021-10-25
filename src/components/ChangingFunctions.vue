@@ -31,11 +31,13 @@
       </button>
     </div>
     <!-- Actual components -->
-    <translacao v-if="translacao" :twoD="twoD" />
-    <rotacao v-if="rotacao" :twoD="twoD" />
-    <reflexao v-if="reflexao" :twoD="twoD" />
-    <projecao v-if="projecao" :twoD="twoD" />
-    <cisalhamento v-if="cisalhamento" :twoD="twoD" />
+    <div class="actualComponents">
+      <translacao v-if="translacao" :twoD="twoD" />
+      <rotacao v-if="rotacao" :twoD="twoD" />
+      <reflexao v-if="reflexao" :twoD="twoD" />
+      <projecao v-if="projecao" :twoD="twoD" />
+      <cisalhamento v-if="cisalhamento" :twoD="twoD" />
+    </div>
   </div>
 </template>
 
@@ -81,6 +83,7 @@ export default {
 
 <style scoped lang="scss">
 .buttons {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -102,6 +105,19 @@ export default {
   }
   button.active {
     background-color: #6e8894;
+  }
+}
+.actualComponents {
+  z-index: 0;
+  position: relative;
+  padding-top: 50px;
+  height: 50vh !important;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .actualComponents {
+    margin-right: 120px;
   }
 }
 </style>
