@@ -127,21 +127,21 @@ export default new Vuex.Store({
       var lightC = new AmbientLight(0x222222);
       state.scene.add(lightC);
       // Axis Line 1
-      var materialB = new LineBasicMaterial({ color: 0x0000ff });
+      var materialB = new LineBasicMaterial({ color: 0x0000ff, linewidth: 2 });
       var geometryB = new Geometry();
       geometryB.vertices.push(new Vector3(0, 0, 0));
       geometryB.vertices.push(new Vector3(0, 1000, 0));
       var lineA = new Line(geometryB, materialB);
       state.axisLines.push(lineA);
       // Axis Line 2
-      var materialC = new LineBasicMaterial({ color: 0x00ff00 });
+      var materialC = new LineBasicMaterial({ color: 0x00ff00, linewidth: 2 });
       var geometryC = new Geometry();
       geometryC.vertices.push(new Vector3(0, 0, 0));
       geometryC.vertices.push(new Vector3(1000, 0, 0));
       var lineB = new Line(geometryC, materialC);
       state.axisLines.push(lineB);
       // Axis 3
-      var materialD = new LineBasicMaterial({ color: 0xff0000 });
+      var materialD = new LineBasicMaterial({ color: 0xff0000, linewidth: 2 });
       var geometryD = new Geometry();
       geometryD.vertices.push(new Vector3(0, 0, 0));
       geometryD.vertices.push(new Vector3(0, 0, 1000));
@@ -149,7 +149,7 @@ export default new Vuex.Store({
       state.axisLines.push(lineC);
       state.scene.add(...state.axisLines);
       // Axis 4 SELF MADE
-      var materialE = new LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+      var materialE = new LineBasicMaterial({ color: 0x000000, linewidth: 3 });
       var geometryE = new Geometry();
       geometryE.vertices.push(new Vector3(state.p0.x, state.p0.y, state.p0.z));
       geometryE.vertices.push(new Vector3(state.p1.x, state.p1.y, state.p1.z));
