@@ -35,16 +35,18 @@
     <rotacao v-if="rotacao" :twoD="twoD" />
     <reflexao v-if="reflexao" :twoD="twoD" />
     <projecao v-if="projecao" :twoD="twoD" />
+    <cisalhamento v-if="cisalhamento" :twoD="twoD" />
   </div>
 </template>
 
 <script>
 import translacao from "../components/Translacao.vue";
+import Cisalhamento from "./cisalhamento.vue";
 import Projecao from "./Projecao.vue";
 import Reflexao from "./Reflexao.vue";
 import Rotacao from "./Rotacao.vue";
 export default {
-  components: { translacao, Rotacao, Reflexao, Projecao },
+  components: { translacao, Rotacao, Reflexao, Projecao, Cisalhamento },
   data() {
     return {
       translacao: true,

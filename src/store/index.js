@@ -333,6 +333,25 @@ export default new Vuex.Store({
       state.p0.y = newPos[1];
       state.p0.z = newPos[2];
     },
+    shearing(state, { eixo, k }) {
+      console.log(k);
+      let shearingMatriz = [];
+      if (eixo == "x") {
+        shearingMatriz = [
+          [1, k],
+          [0, 1],
+        ];
+      } else {
+        shearingMatriz = [
+          [1, 0],
+          [k, 1],
+        ];
+      }
+      console.log(shearingMatriz);
+      let newPos = mul(shearingMatriz, [state.p1.x, state.p1.y]);
+      state.p1.x = newPos[0];
+      state.p1.y = newPos[1];
+    },
   },
   actions: {
     INIT({ state, commit }, { width, height, el }) {
